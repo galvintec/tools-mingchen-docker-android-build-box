@@ -506,3 +506,12 @@ LABEL org.label-schema.usage="/README.md"
 LABEL org.label-schema.docker.cmd="docker run --rm -v `pwd`:${FINAL_DIRWORK} mingc/android-build-box bash -c './gradlew build'"
 LABEL org.label-schema.build-date="${BUILD_DATE}"
 LABEL org.label-schema.vcs-ref="${SOURCE_COMMIT}@${SOURCE_BRANCH}"
+
+#----------~~~~~~~~~~*****
+# build target: complete-flet
+#----------~~~~~~~~~~*****
+FROM complete-flutter as complete-flet
+RUN apt update && \
+    apt install ninja-build && \
+    flutter doctor && \
+    pip install flet
